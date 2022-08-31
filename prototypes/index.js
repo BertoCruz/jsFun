@@ -22,10 +22,34 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
         // ['Tiger', 'Snickers']
 
-        /* CODE GOES HERE */
+    const orangeKitties = kitties.filter(kittie => {
+      //return true if the kittie is orange
+      return kittie.color === 'orange';
+    });
+
+    // console.log(orangeKitties);
+    const orangeKittieNames = orangeKitties.map(kittie => {
+        return kittie.name;
+    });
+    // console.log(orangeKittieNames);
+    // return orangeKittieNames;
+
+    const orangeKits = kitties.reduce( (kittens, kitty) => {
+      
+      if (kitty.color === 'orange'){
+        kittens.push(kitty.name);
+      }
+
+      return kittens;
+    }, []);
+
+    console.log(orangeKits);
+    return orangeKits;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // remember that filter always returns a boolean.
+    //remember that .map() will always returns an array of the same length and the `return` will always add it to the array.
+    // Remember that Reduce
   },
 
   sortByAge() {
