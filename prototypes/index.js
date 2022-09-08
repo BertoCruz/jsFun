@@ -24,18 +24,17 @@ const kittyPrompts = {
     // Return an array of just the names of kitties who are orange e.g.
         // ['Tiger', 'Snickers']
 
-    const orangeKitties = kitties.filter(kittie => {
-      //return true if the kittie is orange
-      return kittie.color === 'orange';
-    });
+    //return true if the kittie is orange
+    // and so returns an array of every object with the cat with orange fur
+    const orangeKitties = kitties.filter(kittie => kittie.color === 'orange');
+    // console.log("Array of orange kitties: ", orangeKitties);
 
-    // console.log(orangeKitties);
-    const orangeKittieNames = orangeKitties.map(kittie => {
-        return kittie.name;
-    });
-    // console.log(orangeKittieNames);
-    // return orangeKittieNames;
+    const orangeKittieNames = orangeKitties.map(kittie => kittie.name);
+    // console.log("Array of the names of these kitties: ", orangeKittieNames);
 
+
+
+    //or we can simply run a reduce method to do both of the things we did above.
     const orangeKits = kitties.reduce( (kittens, kitty) => {
       
       if (kitty.color === 'orange'){
@@ -45,22 +44,25 @@ const kittyPrompts = {
       return kittens;
     }, []);
 
-    console.log(orangeKits);
     return orangeKits;
 
     // Annotation:
     // remember that filter always returns a boolean.
-    //remember that .map() will always returns an array of the same length and the `return` will always add it to the array.
-    // Remember that Reduce
+    // remember that .map() will always returns an array of the same length and the `return` will always add it to the array.
+    // Remember that Reduce will return a single value and that value can be a return of
+    // a single value, be it a num a string or an object or an array. You can run operations inside the code block.
   },
 
   sortByAge() {
-    // Sort the kitties by their age
-
-    /* CODE GOES HERE */
+    kitties.sort((a, b) => b.age - a.age);
+    return kitties;
 
     // Annotation:
-    // Write your annotation here as a comment
+    // Sort the kitties by their age in descending order
+    const compareFn = (a, b) => b.age - a.age;
+
+    // Sort the kitties by their age in ascending order
+    const compareFn2 = (a, b) => b.age - a.age;
   },
 
   growUp() {
@@ -77,7 +79,23 @@ const kittyPrompts = {
     // },
     // ...etc]
 
-    /* CODE GOES HERE */
+    kitties.forEach(kittie => kittie.age += 2);
+    console.log(kitties);
+
+    return kitties;
+
+    //Annotations:
+    // I was confused about this, because I initally used a .map method and thought that this would just 
+    // increase the age by 2, but .map returns a new array of the same length, with the conditional `kittie.age += 2`
+    // returning a new array of just the ages increased.
+    // So then I used a .forEach. I assigned a new const variable to allGrownUp to kitties.forEach, but somehow
+    // an array using .forEach cannot be assigned to a variable? It was returning undefined which confused me.
+    // I simply removed the const declaration and ran a .forEach on kittens alone and returned the same array and it worked.
+    // still so confusing.
+
+    //========= ALSO! WHY ARE THESE FUNCTIONS SETUP THIS WAY? AS IN SMALL CLASSES, WHERE THE FUNCTIONS DON'T TAKE IN 
+    //========= A PARAMETER? THE TEST ARE ALL PASSING A PARAMETER BUT THEY ARE NOT READ HERE WHEN I PASS THEM.
+    //========= I QUESTIONED THIS WHEN THE PREVIOUS FUNCTIONS WERE STILL RETURNING A SORTED ARRAY FOR THIS LAST FUNCTION.
   }
 };
 
